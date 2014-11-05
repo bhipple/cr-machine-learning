@@ -1,0 +1,17 @@
+// ============================================================================
+//                                 Notation
+// ============================================================================
+m = Number of training examples
+x = input variable / features
+y = output variable / target variable
+(x, y) = one training example
+(x^(i), y^(i)) = ith training example
+h = hypothesis function (output by the learning algorithm)
+        h(x) = y
+
+// ============================================================================
+//                    Linear Regression With One Variable
+// ============================================================================
+Also called "Univariate Linear Regression"
+
+The squared error cost function J(theta0, theta1) is generally a good cost function to minimize
