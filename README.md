@@ -1,0 +1,1 @@
+https://class.coursera.org/ml-007/lecture
