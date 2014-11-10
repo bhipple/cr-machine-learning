@@ -16,9 +16,33 @@ y = output variable / target variable
 h = hypothesis function (output by the learning algorithm)
         h(x) = y
 
+:= will represent the assignment operator, e.g., a := a+1
+= will represent a truth assertion, (a = b) ? "equal" : "not equal"
+
 // ============================================================================
 //                    Linear Regression With One Variable
 // ============================================================================
 Also called "Univariate Linear Regression"
 
 The squared error cost function J(theta0, theta1) is generally a good cost function to minimize
+
+Gradient Descent Algorithm
+    Used to minimize the multivariable cost function J(O1, O2) by taking repeated, simultaneous steps according to:
+    O1 := O1 - alpha(d/dO1) J(O1)
+    O2 := O2 - alpha(d/dO2) J(O2)
+
+    until the values converge
+
+    This algorithm is susceptible to falling into relative optima, but linear regression cost functions
+    are convex (bowl shaped), so gradient descent will always converge to the global minimum.
+
+    "Batch" Gradient Descent
+        This references the fact that the gradient descent algorithm specified here looks at the
+        entire training set and sums the error over ALL training data points, at each step
+
+    There's a technique "normal equation method" which solves numerically for the minimum, but it doesn't
+    scale as well as gradient descent
+
+    We use linear algebra matrices and notation to handle cases where there are many more features
+
+
