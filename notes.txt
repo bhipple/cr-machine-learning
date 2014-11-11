@@ -84,3 +84,9 @@ Normal Equation Method:
         1) Redundant features (linear dependence between features)
         2) Too many features (m <= n)
             This can be solved with a technique called regularization
+
+// ============================================================================
+//                               Vectorization
+// ============================================================================
+Implementingthings as vector multiplication instead of for-loops can be
+vastly faster
