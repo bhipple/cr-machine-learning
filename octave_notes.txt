@@ -1,0 +1,49 @@
+Normal Equation Method for finding optimal value of theta to minimize J(theta):
+    pinv (X' * X) * X' * y
+
+Symbols:
+%           Comment
+==          Equal test
+~=          Not equal test
+;           Suppresses print output
+&&          Or
+||          And
+xor(a,b)    Exclusive or
+pi          pi
+sprintf('2 decimals: %0.2f', pi)     C-like string printing
+
+format long     Print more sigfigs
+format short    Print fewer digits
+
+Generating a matrix:
+A = [1 2; 3 4; 5 6]
+    Makes a 3x2 matrix
+
+v = 1:0.1:2
+    Creates a vector with values starting at 1 and incrementing by .1 until we get to 2 (inclusive)
+
+ones(2,3)
+    Creates a 2x3 matrix of all 1's
+
+zeros(1, 3)
+    Creates a 1x3 matrix of all 0's
+
+w = rand(3, 3)
+    Matrix with values drawn from normal random distribution
+
+hist(vector)
+    Plots a histogram!
+    Optional second parameter specifies number of buckets
+
+I = eye(4)
+    Gives a 4x4 Identity Matrix
+
+help help
+    Help followed by a function gives documentation
+
+size(X)
+    Returns the size of the matrix
+
+length(v)
+    Size of the longest dimension (used with vectors)
+
