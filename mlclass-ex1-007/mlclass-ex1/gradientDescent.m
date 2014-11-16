@@ -21,11 +21,6 @@ for iter = 1:num_iters
     thetaPrev = theta;
     theta(1,1) = thetaPrev(1,1) - (alpha * 1 / m * sum((X * thetaPrev - y)' * X(:,1)));
     theta(2,1) = thetaPrev(2,1) - (alpha * 1 / m * sum((X * thetaPrev - y)' * X(:,2)));
-    computeCost(X, y, theta)
-
-
-
-
 
 
     % ============================================================
