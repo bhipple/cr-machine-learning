@@ -14,4 +14,11 @@ m = length(y);
 end
 
 
-[X, y, m] = load2()
+% Stuff to do at initialization
+[X, y, m] = load2();
+[X mu sigma] = featureNormalize(X);
+X = [ones(m, 1) X];
+
+alpha = 0.01;
+num_iters = 400;
+theta = zeros(3, 1);
