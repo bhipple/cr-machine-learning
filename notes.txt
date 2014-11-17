@@ -88,5 +88,30 @@ Normal Equation Method:
 // ============================================================================
 //                               Vectorization
 // ============================================================================
-Implementingthings as vector multiplication instead of for-loops can be
+Implementing things as vector multiplication instead of for-loops can be
 vastly faster
+
+// ============================================================================
+//                            Logistic Regression
+// ============================================================================
+In classification, we may denote "0" as the "Negative Class" and 1 as the "Positive Class"
+Generally, this type of problem doesn't mesh too well with linear regression
+
+Logistic Regression creates an h_theta(x) hypothesis that is always between 0 and 1
+    by using the Sigmoid function (also known as the Logistic function)
+
+Because the sigmoid function is more complex, our standard squared error cost function
+    will result in a J(theta) that is non-convex, so it won't work for gradient descent
+    Instead, we use the piecewise defined cost function using logs
+
+Feature scaling also applies to logistic regression, as it did for linear regression
+
+Advanced Optimizations:
+    Instead of Gradient descent, we could use conjugate gradient, BFGS, or L-BFGS
+    These are more compex and sophisticated, with the following advantages:
+        * No need to manually pick alpha
+        * Often faster than gradient descent
+    They only need the same inputs as Gradient descent: A cost function J(theta), and
+    the derivative terms d/dtheta j(J(theta))
+
+    Octave has a good library implementing these algorithm

@@ -47,3 +47,27 @@ size(X)
 length(v)
     Size of the longest dimension (used with vectors)
 
+
+Advanced Optimization Libraries
+    For example, minimizing cost function:
+    J(theta) = (theta(1) - 5)^2 + (theta(2) - 5)^2;
+
+    function [jVal, gradient] = costFunction(theta);
+
+    jVal = (theta(1) - 5)^2 + (theta(2) - 5)^2;
+
+    gradient = zeros(2, 1);
+    gradient(1) = 2 * (theta(1) - 5);
+    gradient(2) = 2 * (theta(2) - 5);
+
+    Then, with these defined, use:
+
+    options = optimset('GradObj', 'on', 'MaxIter', '100');
+    initialTheta = zeros(2,1);
+    [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
+
+    fminunc stands for minimize function unconstrained
+
+Advanced Optimization with Regularization
+    function [jVal, gradient] = costFunction(theta);
+    Some monster equations necessary ... see lecture/42 (Regularized Logistic Regression)
