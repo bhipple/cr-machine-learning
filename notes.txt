@@ -115,3 +115,13 @@ Advanced Optimizations:
     the derivative terms d/dtheta j(J(theta))
 
     Octave has a good library implementing these algorithm
+
+// ============================================================================
+//                              Neural Networks
+// ============================================================================
+h_theta(x) is a sigmoid (logistic) activation function that takes input vectors x and theta
+    and generates some output
+
+We have an input layer, and output layer, and "hidden layer(s)" in between
+
+See Model Representation II for a discussion of a vectorized implementation of forward propagation
