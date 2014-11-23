@@ -21,13 +21,11 @@ grad = zeros(size(theta));
 %
 
 % Cost
-J = (1 / m) * sum(-y .* log(sigmoid(X * theta)) - (1-y) .* log(sigmoid(X * theta)));
+hyp = sigmoid(X * theta);
+J = (1 / m) * sum(-y .* log(hyp) - (1-y) .* log(1-hyp));
 
 % Gradient
-for i = 1:size(X, 2)
-    grad(i,1) = (1 / m) * sum((sigmoid(X * theta) - y)' * X(:,i));
-end
-
+grad = (1 / m) * ((hyp - y)' * X)';
 
 % =============================================================
 
