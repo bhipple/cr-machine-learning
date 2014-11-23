@@ -38,7 +38,6 @@ ylabel('Microchip Test 2')
 
 % Specified in plot order
 legend('y = 1', 'y = 0')
-hold off;
 
 
 %% =========== Part 1: Regularized Logistic Regression ============
@@ -96,6 +95,7 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 [theta, J, exit_flag] = ...
 	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
 
+close;
 % Plot Boundary
 plotDecisionBoundary(theta, X, y);
 hold on;
