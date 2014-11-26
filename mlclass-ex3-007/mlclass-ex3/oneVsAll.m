@@ -49,16 +49,23 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+% Iterate over the 10 clasifiers
+for c = 1:num_labels
+    if(c == 10)
+        c = 0;
+    end
 
+    initial_theta = zeros(n+1, 1);
+    options = optimset('GradObj', 'on', 'MaxIter', 50);
 
+    [theta] = fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), initial_theta, options);
 
+    if(c == 0)
+        c = 10;
+    end
 
-
-
-
-
-
-
+    all_theta(c, :) = theta';
+end
 
 % =========================================================================
 
