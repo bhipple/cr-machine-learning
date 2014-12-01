@@ -70,20 +70,27 @@ a_2 = [ones(size(a_2_raw, 1), 1) a_2_raw];
 a_3 = sigmoid(a_2 * Theta2');
 hyp = a_3;
 
-yM = zeros(size(y,1), num_labels);
-for k = 1 : num_labels
-    yM(:, k) = (y == k);
-end
+%yM = zeros(size(y,1), num_labels);
+%for k = 1 : num_labels
+    %yM(:, k) = (y == k);
+%end
 
+% Not using vectorization, but it works
 for i = 1 : m
     for k = 1 : num_labels
         y_ik = (y(i) == k);
         J +=  -y_ik * log(hyp(i, k)) - (1 - y_ik) * log(1 - hyp(i, k));
     end
 end
-
 J /= m;
 
+% Applying regularization
+
+Theta1Cost = Theta1(:, 2:end) .^ 2;
+Theta2Cost = Theta2(:, 2:end) .^ 2;
+regCost = lambda / (2*m) * (sum(Theta1Cost(:)) + sum(Theta2Cost(:)))
+
+J += regCost
 
 % -------------------------------------------------------------
 
