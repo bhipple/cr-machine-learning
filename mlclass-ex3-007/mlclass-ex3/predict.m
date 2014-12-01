@@ -21,13 +21,30 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% X is in R^(5000x401)
+% Theta1 is in R^(25x401)
+% Theta2 is in R^(10x26)
+% X2 must be in R^(5000x26)
+% P is in R^(5000x1)
 
+% Forward propogation: X and Theta1 form X2,
+% then X2 and Theta2 form P
 
+a_1 = [ones(size(X, 1), 1) X];
+a_1_out = sigmoid(a_1 * Theta1');
 
+a_2 = [ones(size(a_1_out, 1), 1) a_1_out];
 
+a_3 = sigmoid(a_2 * Theta2');
 
+vals = zeros(m, 1);
+[vals, p] = max(a_3, [], 2);
 
-
+for i=1:size(p, 1)
+    if(p(i, 1) == 10)
+        p(i, 1) = 0;
+    end
+end
 
 % =========================================================================
 
