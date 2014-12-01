@@ -70,11 +70,6 @@ a_2 = [ones(size(a_2_raw, 1), 1) a_2_raw];
 a_3 = sigmoid(a_2 * Theta2');
 hyp = a_3;
 
-%yM = zeros(size(y,1), num_labels);
-%for k = 1 : num_labels
-    %yM(:, k) = (y == k);
-%end
-
 % Not using vectorization, but it works
 for i = 1 : m
     for k = 1 : num_labels
@@ -90,9 +85,33 @@ Theta1Cost = Theta1(:, 2:end) .^ 2;
 Theta2Cost = Theta2(:, 2:end) .^ 2;
 regCost = lambda / (2*m) * (sum(Theta1Cost(:)) + sum(Theta2Cost(:)))
 
-J += regCost
+J += regCost;
 
 % -------------------------------------------------------------
+% Back propagation
+number_of_layers = 2;
+grads = zeros(size(number_of_layers));
+
+D = zeros(TODO
+
+for i = 1 : m
+    z_2 = a_1(i,:) * Theta1';
+    a_2 = [1 sigmoid(z_2)];
+
+
+    z_3 = a_2 * Theta2'
+    a_3 = sigmoid(z_3);
+
+    d_3 = zeros(num_labels);
+    for k = 1 : num_labels
+        d_3(k) = a_3(k) - (y(i) == k);
+    end
+
+    d_2 = Theta2' * d_3 .* sigmoidGradient(z_2);
+    d_2 = d_2(2:end);
+end
+
+
 
 % =========================================================================
 
