@@ -83,35 +83,41 @@ J /= m;
 
 Theta1Cost = Theta1(:, 2:end) .^ 2;
 Theta2Cost = Theta2(:, 2:end) .^ 2;
-regCost = lambda / (2*m) * (sum(Theta1Cost(:)) + sum(Theta2Cost(:)))
+regCost = lambda / (2*m) * (sum(Theta1Cost(:)) + sum(Theta2Cost(:)));
 
 J += regCost;
 
 % -------------------------------------------------------------
 % Back propagation
-number_of_layers = 2;
-grads = zeros(size(number_of_layers));
-
-D = zeros(TODO
-
 for i = 1 : m
-    z_2 = a_1(i,:) * Theta1';
-    a_2 = [1 sigmoid(z_2)];
+    % Forward propagation
+    z_2 = Theta1 * a_1(i,:)';
+    a_2 = [1; sigmoid(z_2)];
 
-
-    z_3 = a_2 * Theta2'
+    z_3 = Theta2 * a_2;
     a_3 = sigmoid(z_3);
 
-    d_3 = zeros(num_labels);
+    % Back propagation
+    d_3 = zeros(num_labels, 1);
     for k = 1 : num_labels
         d_3(k) = a_3(k) - (y(i) == k);
     end
 
-    d_2 = Theta2' * d_3 .* sigmoidGradient(z_2);
+    d_2 = Theta2' * d_3;
     d_2 = d_2(2:end);
+    d_2 = d_2 .* sigmoidGradient(z_2);
+
+    % Accumulation
+    Theta2_grad += d_3 * a_2';
+    Theta1_grad += d_2 * a_1(i,:);
 end
 
+Theta2_grad = Theta2_grad ./ m;
+Theta1_grad = Theta1_grad ./ m;
 
+% Regularization
+Theta2_grad(:, 2:end) += lambda/m * Theta2(:, 2:end);
+Theta1_grad(:, 2:end) += lambda/m * Theta1(:, 2:end);
 
 % =========================================================================
 
