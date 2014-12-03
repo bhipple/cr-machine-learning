@@ -125,3 +125,39 @@ h_theta(x) is a sigmoid (logistic) activation function that takes input vectors 
 We have an input layer, and output layer, and "hidden layer(s)" in between
 
 See Model Representation II for a discussion of a vectorized implementation of forward propagation
+
+
+// ============================================================================
+//                             Practical Advice
+// ============================================================================
+If we have a learning algorithm that is getting unsatisfactory results, we can try:
+    * Getting more training examples?
+        - Fixes high variance
+    * Try fewer features?
+        - Fixes high variance
+    * Try more features?
+        - Fixes high bias
+    * Try adding polynomial features?
+        - Fixes high bias
+    * Try decreasing lambda?
+        - Fixes high bias
+    * Try increasing lambda?
+        - Fixes high variance
+
+Evaluating a hypothesis with diagnostics:
+    Try splitting ~70% of the data into a training set, and ~30% of the data into a test set
+    Then measure the J(theta)_test cost if it's linear regression, or %-misclassified if it's logistic regression
+
+If we're considering multiple order polynomials and optimizing for that, then split the training data
+    into the training set, the cross-validation set, and the test set (~60%, ~20%, ~20%)
+    We then train all the hypothesis on the training set,
+    then use the cross-validation set to select a model with the lowest cross-validation error,
+    and then measure its generalization score with the test set
+
+Bias vs. Variance
+    When we're underfitting, we say that the fit has high bias
+        Symptom: both training and cross validation error are high
+    When overfitting, we say that the fit has high variance
+        Symptom: cross validation error is high, but training error is low
+    When using regularization, we don't include the regularization term in the cost functions for the training set and CV set
+
