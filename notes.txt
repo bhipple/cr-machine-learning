@@ -191,3 +191,43 @@ How much data to train on
 Large margin classifier: a margin is the boundary on either side of the decision boundary
     SVMs try to separate the positive and negative exames with as big a margine as possible
     Gives the decision boundary some robustness
+
+When choosing C (1/lambda), we optimize between the following:
+    Large C --> Lower bias, higher variance
+    Small C --> Higher bias, lower variance
+
+When choosing sigma for the gaussian kernel,
+    Large sigma --> higher bias, lower variance
+    Small sigma --> lower bias, higher variance
+
+liblinear and libsvm are Andrew's two favorite SVM software packages
+
+Things you need to do:
+    Choose paramter C
+    Choose the kernel (similarity function):
+        No kernel ("linear kernel"): predicts y=1 if Theta' * x >= 0
+        Gaussian Kernel
+            Need to choose sigma
+            You may need to provide a function that computes the similarity function:
+                function f = kernel(x1, x2)
+            Need to do feature scaling first!
+        Whatever kernel you choose MUST satisfy Mercer's Theorem
+        Other kernels are used much, much more rarely
+            Polynomial kernel, String kernel, chi-squared kernel, histogram intersection kernel
+
+// ============================================================================
+//                         Comparison of Techniques
+// ============================================================================
+Logistic regression and an SVM without a kernel will usually give similar results
+Neural networks will almost always work well, but may be slower to train
+The SVM optimization problem is convex, so it will always find the global minimum
+
+If n is large relative to m, (say, n ~ 10,000, and m is in (10-1000)
+   Use logistic regression or an SVM without a kernel
+    If you have so many features
+
+If n is small (1-1000) and m is intermediate (10-10,000),
+   Use an SVM with a Gaussian Kernel
+
+If n is small (1-1000), and m is large (50,000+)
+    Create/add more features, then use logistic regression or SVM without a kernel
