@@ -161,3 +161,33 @@ Bias vs. Variance
         Symptom: cross validation error is high, but training error is low
     When using regularization, we don't include the regularization term in the cost functions for the training set and CV set
 
+Skewed Classes (have many more examples from one class than from the other)
+    Use a different evaluation metric, such as precision/recall
+
+    By convention, set y = 1 as the extremely rare class
+    A true positive is when the algorithm predicts true, and the actual result is true
+
+    Precision: Of examples where we predict y = 1, what fraction is actually 1?
+        # True Positive / (# True Positive + # False positives)
+
+    Recall:
+        # True Positves / (# True Positives + # False Negatives)
+
+    We want both of these fractions to be as high as possible
+
+    This prevents an algorithm from "cheating" by just always classifying as 0 or 1
+
+    Since these metrics are generally inversely proportional, we need to compute an F-score:
+        F_1 score = 2 * (P * R) / (P + R)
+        This penalizes having a very low P or R value
+
+How much data to train on
+    In order for the "big data" approach to work, the features in X must be sufficient to predict y
+    See if a human can predict y accurately, given X.
+
+// ============================================================================
+//                          Support Vector Machines
+// ============================================================================
+Large margin classifier: a margin is the boundary on either side of the decision boundary
+    SVMs try to separate the positive and negative exames with as big a margine as possible
+    Gives the decision boundary some robustness
