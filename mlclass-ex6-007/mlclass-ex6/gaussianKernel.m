@@ -15,10 +15,10 @@ sim = 0;
 %               sigma
 %
 %
+diffVect = x1 - x2;
+squaredNorm = diffVect' * diffVect;
 
-
-
-
+sim = e ^ (-((squaredNorm)/(2*sigma^2)));
 
 
 % =============================================================
