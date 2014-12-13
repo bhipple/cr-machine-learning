@@ -245,13 +245,13 @@ Apply feature scaling and mean normalization first!
 1) Compute covariance matrix
     Sigma = (1/m) * X' * X;
 2) Compute eigenvectors of the covariance matrix
-    [U, S, V ] = svc(Sigma);
+    [U, S, V ] = svd(Sigma);
 3) Grab the first k columns:
     Ureduce = U(:, 1:k);
     z = Ureduce' * x;
 
 Choosing k:
-    Use the diagonal S matrix from svc(Sigma)!
+    Use the diagonal S matrix from svd(Sigma)!
 
 Practical Advice
     Run PCA on the training set only, which creates some mapping function from x in R^m to z in R^k
