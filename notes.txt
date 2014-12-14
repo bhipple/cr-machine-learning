@@ -272,3 +272,38 @@ Practical Advice
 
     Before using PCA, you should generally try your ML system WITHOUT PCA first
     Only use it if you need it. Only use PCA if that doesn't work due to scalability.
+
+// ============================================================================
+//                             Anomaly Detection
+// ============================================================================
+Intuition: for a new test case x, we will look at the avg and stddev for each feature of x,
+    and conclude that the probability of x occurring naturally is equal to the product
+    of each individual feature appearing with the observed value
+
+Algorithm:
+    1) Choose features x(i) that might be indicative of anomalous examples
+    2) Fit parameters u1, u2, ..., un, sigma^2_1, sigma^2_2, ..., sigma^2_n
+    3) Given a new example x, compute p(x)
+    4) Anomaly if p(x) < e
+
+Generally this works well in unsupervised learning, but if we have some labeled data, then
+we can develop and evaluate this by splitting our data into training, CV, and test sets
+    Calculate u, sigma on the training set to create the model p(x)
+    Fit epsilon to the cross validation set with some evaluation metrics (F-score, etc)
+    Test on the test set to see overall performance
+
+    Since we generally have heavily skewed data here (many good examples, rare anomalies),
+    we should usually use one of the other evaluation metrics instead of classification error
+
+Choose features that may take on unusually large or small values in the event of an anomaly
+
+// ============================================================================
+//                            Recommender Systems
+// ============================================================================
+Collaborative Filtering algorithm is magic!
+
+The collaborative filtering algorithm is also known as "Low rank matrix factorization"
+    See the video by this name in week 9 to get an overview of collaborative filtering vectorization
+
+Once we've learned the feature vectors for each movie i, we can recommend the n most "similar"
+movies to a user by finding the n movies closest to i, that is, smallest ||x(i) - x(j)||
