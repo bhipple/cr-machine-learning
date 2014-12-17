@@ -23,17 +23,25 @@ for epsilon = min(pval):stepsize:max(pval)
     % Note: You can use predictions = (pval < epsilon) to get a binary vector
     %       of 0's and 1's of the outlier predictions
 
+    predictions = (pval < epsilon);
+
+    % Values where both yval and predictions are true
+    truePositives = sum(predictions & yval);
+
+    % Values where yval is false and predictions is true
+    falsePositives = sum((yval==0) & predictions);
+
+    % Values where yval is true and predictions is false
+    falseNegatives = sum(yval & (predictions==0));
+
+    % When we say something is an anomaly, how often is it actually an anomaly
+    precision = truePositives / (truePositives + falsePositives);
+
+    % When something is an anomaly, how often do we label it as such
+    recall = truePositives / (truePositives + falseNegatives);
 
 
-
-
-
-
-
-
-
-
-
+    F1 = 2 * precision * recall / (precision + recall);
 
     % =============================================================
 
