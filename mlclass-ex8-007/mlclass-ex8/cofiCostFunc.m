@@ -40,20 +40,16 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+% error_factor - num_movies x num_users
+error_factor = (X * Theta' - Y) .* R;
 
+% Cost Function
+J = 1/2 * sum(sum(error_factor .^2));
+J += lambda / 2 * (sum(sum(Theta .^ 2)) + sum(sum(X .^ 2)));
 
-
-
-
-
-
-
-
-
-
-
-
-
+% Gradients
+X_grad = error_factor * Theta + lambda * X;
+Theta_grad = error_factor' * X + lambda * Theta;
 
 % =============================================================
 

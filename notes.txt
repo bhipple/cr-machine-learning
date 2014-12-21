@@ -307,3 +307,19 @@ The collaborative filtering algorithm is also known as "Low rank matrix factoriz
 
 Once we've learned the feature vectors for each movie i, we can recommend the n most "similar"
 movies to a user by finding the n movies closest to i, that is, smallest ||x(i) - x(j)||
+
+// ============================================================================
+//                          ML with large datasets
+// ============================================================================
+The gradient descent we've seen so far is called "batch gradient descent", since it computes
+gradients over the entire training set for each step.
+
+Stochastic Gradient Descent
+    1) Randomly shuffle the dataset
+    2) Repeat {
+        for i = 1:m
+            Theta(j) -= alpha * (h(x(i)) - y(i)) * x(i, j)
+    }
+
+    This is making very small gradient descent steps after examining the theta-cost at EACH element,
+    instead of summing up everything and making a step.
